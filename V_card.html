@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine?</title>
+  <style>
+    body {
+      font-family: fantasy;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      width: 360px;
+      height: 280px;
+      border-style:dotted
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    #counter {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #yes {
+      position: absolute;
+      left: 50%;
+      top: 150px;
+      transform: translateX(-50%);
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background: #ddd;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Will you be my Valentine? 💖</h1>
+    <div id="counter">Attempts: 0</div>
+    <button id="yes">Yes</button>
+    <button id="no" onclick="alert('You hate me dont you? T.T')">No </button>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yes");
+    const card = document.querySelector(".card");
+    const counter = document.getElementById("counter");
+
+    let attempts = 0;
+
+    const messages = [
+      "Attempts: 1",
+      "Attempts: 2",
+      "Attempts: 3",
+      "Attempts: 4",
+      "Attempts: 5",
+      "Attempts: 6",
+      "Attempts: 7",
+      "Attempts: 8",
+      "Attempts: 9",
+      "Attempts: 10"
+    ];
+
+    yesBtn.addEventListener("mouseenter", () => {
+      attempts++;
+      counter.textContent = messages[Math.min(attempts - 1, messages.length - 1)];
+
+      // Mercy unlock
+      if (attempts >= 10) {
+        yesBtn.style.left = "50%";
+        yesBtn.style.top = "150px";
+        yesBtn.textContent = "lmao ok, im done.";
+        yesBtn.onclick = () => {
+          alert("YAY 💕 I knew it. I can't wait for King's Spa, I miss you babe 😘");
+        };
+        return;
+      }
+
+      const cardRect = card.getBoundingClientRect();
+      const btnRect = yesBtn.getBoundingClientRect();
+
+      const maxX = cardRect.width - btnRect.width;
+      const maxY = cardRect.height - btnRect.height;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      yesBtn.style.left = `${x}px`;
+      yesBtn.style.top = `${y}px`;
+    });
+  </script>
+</body>
+</html>
