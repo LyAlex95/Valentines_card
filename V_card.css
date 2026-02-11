@@ -42,10 +42,11 @@ body {
     #yes {
       position: absolute;
       left: 50%;
-      top: 150px;
+      top: 95px;
       transform: translateX(-50%);
       background: #ff4d6d;
       color: white;
+      z-index: 10;
     }
 
     #no {
